@@ -1,0 +1,466 @@
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+   :root {
+    /* Color Palette */
+    --primary-color: #2563eb;       /* Blue 600 */
+    --primary-hover: #1d4ed8;       /* Blue 700 */
+    --primary-light: #eff6ff;       /* Blue 50 */
+    
+    --bg-color: #f8fafc;            /* Slate 50 */
+    --card-bg: #ffffff;
+    
+    --text-main: #0f172a;           /* Slate 900 */
+    --text-muted: #64748b;          /* Slate 500 */
+    
+    --border-color: #cbd5e1;        /* Slate 300 */
+    --border-focus: #3b82f6;        /* Blue 500 */
+    
+    --error-color: #dc2626;         /* Red 600 */
+    --error-bg: #fef2f2;            /* Red 50 */
+    --error-border: #f87171;        /* Red 400 */
+    
+    --success-color: #16a34a;       /* Green 600 */
+    
+    /* Typography & Layout */
+    --font-family: 'Inter', sans-serif;
+    --border-radius: 8px;
+    --transition-speed: 0.2s;
+}
+
+/* ==========================================================================
+   Reset & Global
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+}
+
+/* ==========================================================================
+   App Container & Header
+   ========================================================================== */
+.app-container {
+    background-color: var(--card-bg);
+    max-width: 650px;
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    overflow: hidden;
+}
+
+.app-header {
+    background-color: var(--primary-light);
+    padding: 2rem;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.logo i {
+    font-size: 2rem;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Form Styles
+   ========================================================================== */
+.form-wrapper {
+    padding: 2.5rem 2rem;
+    position: relative;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.form-row .col {
+    flex: 1;
+}
+
+@media (max-width: 500px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+label {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+.required {
+    color: var(--error-color);
+    margin-left: 4px;
+}
+
+.tooltip-icon {
+    color: var(--text-muted);
+    margin-left: 8px;
+    font-size: 1.1rem;
+    cursor: help;
+}
+
+.helper-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.text-primary {
+    color: var(--primary-color);
+}
+.mt-1 {
+    margin-top: 0.5rem;
+}
+
+/* Inputs & Selects */
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    pointer-events: none;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 0.85rem 1rem 0.85rem 2.75rem;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    color: var(--text-main);
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    outline: none;
+    transition: all var(--transition-speed) ease;
+    appearance: none;
+}
+
+/* Styling readonly input */
+input[readonly] {
+    background-color: #f1f5f9;
+    color: var(--text-muted);
+    cursor: not-allowed;
+    border-color: #e2e8f0;
+}
+input[readonly]:focus {
+    box-shadow: none;
+    border-color: #e2e8f0;
+}
+
+/* Fix for Select dropdown arrow */
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+}
+
+input:focus:not([readonly]),
+select:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+input::placeholder {
+    color: #94a3b8;
+}
+
+/* Number input arrows removal */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* ==========================================================================
+   Quantity Control Buttons
+   ========================================================================== */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background-color: #fff;
+    transition: all var(--transition-speed) ease;
+}
+
+.quantity-control:focus-within {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+.qty-btn {
+    background-color: #f8fafc;
+    border: none;
+    padding: 0.85rem 1rem;
+    color: var(--text-main);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-btn:hover {
+    background-color: #e2e8f0;
+    color: var(--primary-color);
+}
+
+.quantity-control input[type="number"] {
+    border: none;
+    border-radius: 0;
+    text-align: center;
+    padding: 0.85rem 0.5rem;
+    width: 100%;
+    -moz-appearance: textfield;
+}
+
+.quantity-control input[type="number"]:focus {
+    box-shadow: none;
+    border: none;
+}
+
+/* ==========================================================================
+   Validation States
+   ========================================================================== */
+.error-message {
+    color: var(--error-color);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    display: none; /* Hidden by default */
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.error-message::before {
+    content: "⚠️";
+    font-size: 0.9rem;
+}
+
+/* When input is invalid (handled via JS classes) */
+.input-error input:not([readonly]),
+.input-error select,
+.input-error .quantity-control {
+    border-color: var(--error-border);
+    background-color: var(--error-bg);
+}
+
+.input-error input:not([readonly]):focus,
+.input-error select:focus {
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+.input-error .quantity-control input[type="number"] {
+    background-color: var(--error-bg);
+}
+
+.input-error .error-message {
+    display: flex;
+}
+
+/* ==========================================================================
+   Pill Badges (Tags)
+   ========================================================================== */
+.pill-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.pill-label {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.pill-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.pill-text {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all var(--transition-speed) ease;
+    user-select: none;
+}
+
+.pill-label:hover .pill-text {
+    background-color: #e2e8f0;
+    border-color: #cbd5e1;
+}
+
+.pill-label input[type="checkbox"]:checked ~ .pill-text {
+    background-color: var(--primary-light);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.form-actions {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.btn-primary:disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   Toast Notifications
+   ========================================================================== */
+.toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.toast {
+    background: #ffffff;
+    border-left: 4px solid var(--success-color);
+    border-radius: var(--border-radius);
+    padding: 1rem 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    animation: slideInRight var(--transition-speed) forwards;
+    min-width: 300px;
+    color: var(--text-main);
+}
+
+.toast.error { border-left-color: var(--error-color); }
+.toast.info { border-left-color: var(--primary-color); }
+.toast.warning { border-left-color: #f59e0b; }
+
+.toast-icon {
+    font-size: 1.5rem;
+    color: var(--success-color);
+}
+.toast.error .toast-icon { color: var(--error-color); }
+.toast.info .toast-icon { color: var(--primary-color); }
+.toast.warning .toast-icon { color: #f59e0b; }
+
+.toast-content p {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateY(-10px); }
+}

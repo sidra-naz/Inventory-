@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Inventory Entry</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <i class="ph-fill ph-database"></i>
+                <h1>Data Inventory Entry</h1>
+            </div>
+            <p class="subtitle">Please fill out the form below to add a new item to the inventory. Follow the input rules carefully.</p>
+        </header>
+
+        <main class="form-wrapper">
+            <form id="inventory-form" novalidate>
+                
+                <!-- Product ID (Auto-Generated & Read-only) -->
+                <div class="form-group">
+                    <label for="product-id">Product ID</label>
+                    <div class="input-container">
+                        <i class="ph ph-barcode input-icon"></i>
+                        <input type="text" id="product-id" name="product-id" readonly>
+                    </div>
+                    <p class="helper-text mt-1 text-primary"><i class="ph ph-magic-wand"></i> (Auto-Generated ID)</p>
+                </div>
+
+                <div class="form-row">
+                    <!-- Product Name (Dropdown) -->
+                    <div class="form-group col">
+                        <label for="product-name">
+                            Product Name <span class="required">*</span>
+                        </label>
+                        <div class="input-container">
+                            <i class="ph ph-box input-icon"></i>
+                            <select id="product-name" name="product-name" required>
+                                <option value="" disabled selected>Select a product...</option>
+                                <option value="Laptop Pro 15">Laptop Pro 15"</option>
+                                <option value="Ergonomic Desk Chair">Ergonomic Desk Chair</option>
+                                <option value="Wireless Mouse X">Wireless Mouse X</option>
+                                <option value="4K Ultra Monitor">4K Ultra Monitor</option>
+                                <option value="Spiral Notebook A4">Spiral Notebook A4</option>
+                                <option value="Mechanical Keyboard">Mechanical Keyboard</option>
+                            </select>
+                        </div>
+                        <div class="error-message" id="product-name-error">Please select a product name.</div>
+                    </div>
+
+                    <!-- Category (Dropdown) -->
+                    <div class="form-group col">
+                        <label for="category">
+                            Category <span class="required">*</span>
+                        </label>
+                        <div class="input-container">
+                            <i class="ph ph-tag input-icon"></i>
+                            <select id="category" name="category" required>
+                                <option value="" disabled selected>Select a category...</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Furniture">Furniture</option>
+                                <option value="Stationery">Stationery</option>
+                                <option value="Clothing">Clothing</option>
+                            </select>
+                        </div>
+                        <div class="error-message" id="category-error">Please select a category.</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <!-- Quantity -->
+                    <div class="form-group col">
+                        <label for="quantity">
+                            Quantity <span class="required">*</span>
+                        </label>
+                        <div class="quantity-control">
+                            <button type="button" class="qty-btn" id="qty-minus" aria-label="Decrease quantity"><i class="ph ph-minus"></i></button>
+                            <input type="number" id="quantity" name="quantity" min="1" step="1" value="1" placeholder="e.g. 50" required>
+                            <button type="button" class="qty-btn" id="qty-plus" aria-label="Increase quantity"><i class="ph ph-plus"></i></button>
+                        </div>
+                        <div class="error-message" id="quantity-error">Please enter a valid positive whole number.</div>
+                    </div>
+
+                    <!-- Price per Unit -->
+                    <div class="form-group col">
+                        <label for="price">
+                            Price per Unit ($) <span class="required">*</span>
+                        </label>
+                        <div class="input-container">
+                            <i class="ph ph-currency-dollar input-icon"></i>
+                            <input type="number" id="price" name="price" min="0.01" step="0.01" placeholder="0.00" required>
+                        </div>
+                        <div class="error-message" id="price-error">Please enter a valid price (max 2 decimal places).</div>
+                    </div>
+                </div>
+
+                <!-- Status (Dropdown) -->
+                <div class="form-group">
+                    <label for="status">
+                        Status <span class="required">*</span>
+                    </label>
+                    <div class="input-container">
+                        <i class="ph ph-activity input-icon"></i>
+                        <select id="status" name="status" required>
+                            <option value="" disabled selected>Select status...</option>
+                            <option value="In Stock">In Stock</option>
+                            <option value="Low Stock">Low Stock</option>
+                            <option value="Out of Stock">Out of Stock</option>
+                            <option value="Discontinued">Discontinued</option>
+                        </select>
+                    </div>
+                    <div class="error-message" id="status-error">Please select a status.</div>
+                </div>
+
+                <!-- Tags (Pill Badges) -->
+                <div class="form-group">
+                    <label>Category Tags</label>
+                    <p class="helper-text">Select all applicable tags to classify the product better.</p>
+                    <div class="pill-group">
+                        <label class="pill-label">
+                            <input type="checkbox" name="tags" value="Premium">
+                            <span class="pill-text">Premium</span>
+                        </label>
+                        <label class="pill-label">
+                            <input type="checkbox" name="tags" value="Fast Moving">
+                            <span class="pill-text">Fast Moving</span>
+                        </label>
+                        <label class="pill-label">
+                            <input type="checkbox" name="tags" value="Fragile">
+                            <span class="pill-text">Fragile</span>
+                        </label>
+                        <label class="pill-label">
+                            <input type="checkbox" name="tags" value="New Arrival">
+                            <span class="pill-text">New Arrival</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-actions">
+                    <button type="submit" id="submit-btn" class="btn btn-primary">
+                        <i class="ph ph-check-circle"></i> Save to Inventory
+                    </button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
